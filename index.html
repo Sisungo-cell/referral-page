@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Passive Income Software</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#0b0f19;
+color:white;
+text-align:center;
+margin:0;
+}
+
+.header{
+background:#111827;
+padding:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+.box{
+background:#1f2937;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+
+button{
+background:#22c55e;
+color:white;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:8px;
+width:80%;
+margin:10px;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+.timer{
+font-size:20px;
+color:#facc15;
+}
+
+.whatsapp{
+background:#25D366;
+}
+
+.footer{
+margin-top:20px;
+font-size:12px;
+color:gray;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+AUTO PROFIT SOFTWARE
+</div>
+
+<div class="box">
+
+<h2>Earn Commission Forever</h2>
+
+<p>
+This software pays you every time someone joins using your link.
+You get lifetime commission.
+</p>
+
+<p class="timer">
+Offer ends in: <span id="countdown"></span>
+</p>
+
+<a href="YOUR_REFERRAL_LINK">
+<button>Activate Software</button>
+</a>
+
+<a href="https://wa.me/YOUR_WHATSAPP_NUMBER">
+<button class="whatsapp">Talk to Me on WhatsApp</button>
+</a>
+
+</div>
+
+<div class="box">
+
+<h3>How it works</h3>
+
+<p>1. Join software</p>
+<p>2. Get your link</p>
+<p>3. Share to friends</p>
+<p>4. Earn forever</p>
+
+</div>
+
+<div class="footer">
+System Powered | Referral Network 2026
+</div>
+
+
+<script>
+
+var countDownDate = new Date().getTime() + 86400000;
+
+var x = setInterval(function() {
+
+var now = new Date().getTime();
+
+var distance = countDownDate - now;
+
+var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+var seconds = Math.floor((distance % (1000*60)) / 1000);
+
+document.getElementById("countdown").innerHTML =
+hours + "h "
++ minutes + "m "
++ seconds + "s ";
+
+if (distance < 0) {
+clearInterval(x);
+document.getElementById("countdown").innerHTML = "Expired";
+}
+
+}, 1000);
+
+</script>
+
+</body>
+</html>
