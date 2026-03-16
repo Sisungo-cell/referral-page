@@ -1,40 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Profit Software - PRO Referral</title>
 
-<title>Passive Income Software</title>
+<!-- Favicon (optional) -->
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABi0lEQVRYR+3XMWoTQRSA4Q9wt8oXERIp6FCEqilgiZ2cwAc4PAlHsR6oUh1YqHge3QjS4k3DiRjF3E5gdQ+P2oOeR9vfM7O6ZlM4Yp+7L0n9Dg4Z5Gx7GoOd+Ddv6wl+OOCDF2BuI0hCmy0K6QxkWqhnDKjXU0wV4S3VxA74nTGF0QZyPshPB1wqEcXaeA/PEjZHJ0SYo5TPF6H3V1Oksc6IOZpJJjBmhqMnOd0GYsNKmFMhIzEhm9/xyI2Kn8thfTjQzW+PaMGtIQ2zO2YVqS+ybpEytCk6R3k4eqB2SiPiHbSFOiTnV8htUf4nkUucy3pqluU4p6G+zE5qhP0i+0YyG/sbAG8nYoovPGD1i0eZ8C/HBNfQIXfq3H6bn/kiyQ8j+gCPQ8zZz8y8EY4eU+Xo7I+MZxTVX3wB0q4N4yDL8a7AAAAAElFTkSuQmCC">
 
 <style>
-
-body{
-font-family: Arial;
-background:#0b0f19;
-color:white;
-text-align:center;
-margin:0;
+/* -----------------------------
+    Basic Page Styles
+----------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0f19;
+    color: white;
+    text-align: center;
+    margin: 0;
 }
 
-.header{
-background:#111827;
-padding:20px;
-font-size:22px;
-font-weight:bold;
+.header {
+    background: #111827;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.box{
-background:#1f2937;
-margin:20px;
-padding:20px;
-border-radius:10px;
+.box {
+    background: #1f2937;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-button{
-background:#22c55e;
-color:white;
-padding:15px;
-font-size:18px;
-border:none;
+button {
+    background: #22c55e;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    width: 80%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+.timer {
+    font-size: 20px;
+    color: #facc15;
+}
+
+.whatsapp {
+    background: #25D366;
+}
+
+input {
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: gray;
+}
+
+.dynamic {
+    color: #22c55e;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<!-- ==============================
+      HEADER
+================================= -->
+<div class="header">
+AUTO PROFIT SOFTWARE
+</div>
+
+<!-- ==============================
+      REFERRAL & CTA BOX
+================================= -->
+<div class="box">
+<h2>Earn Commission Forever</h2>
+<p>This software pays you every time someone joins using your personalized referral link. Lifetime commissions guaranteed.</p>
+
+<p class="timer">Offer ends in: <span id="countdown"></span></p>
+
+<!-- Referral Button -->
+<!-- The link updates dynamically per visitor -->
+<a href="#" id="referralButton">
+<button id="activateBtn">Activate Software</button>
+</a>
+
+<!-- WhatsApp Contact -->
+<a href="https://wa.me/254768610334" target="_blank">
+<button class="whatsapp">Talk to Me on WhatsApp</button>
+</a>
+</div>
+
+<!-- ==============================
+      EMAIL LEAD CAPTURE BOX
+================================= -->
+<div class="box">
+<h3>Join Early Access</h3>
+<p>Enter your email to get updates and notifications:</p>
+<input type="email" id="email" placeholder="Your email">
+<button onclick="submitEmail()">Submit</button>
+</div>
+
+<!-- ==============================
+      HOW IT WORKS BOX
+================================= -->
+<div class="box">
+<h3>How It Works</h3>
+<p>1. Join the software platform</p>
+<p>2. Get your unique referral link</p>
+<p>3. Share your link with friends</p>
+<p>4. Earn commissions forever</p>
+</div>
+
+<!-- ==============================
+      DYNAMIC STATS BOX
+================================= -->
+<div class="box">
+<h3>Live Stats</h3>
+<p>Visitors online: <span class="dynamic" id="visitorCount">0</span></p>
+<p>Lifetime referrals: <span class="dynamic" id="referralCount">0</span></p>
+<p>Total rewards earned: <span class="dynamic" id="rewardsCount">$0</span></p>
+</div>
+
+<div class="footer">
+System Powered | Referral Network 2026 | Developed by S.W. Sisungo
+</div>
+
+<!-- ==============================
+      JAVASCRIPT - DYNAMIC LOGIC
+================================= -->
+<script>
+// -----------------------------
+// 1. Countdown Timer (24h default)
+// -----------------------------
+var countDownDate = new Date().getTime() + 86400000; // 24 hours from now
+setInterval(function(){
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    var seconds = Math.floor((distance % (1000*60)) / 1000);
+    document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s";
+    if(distance < 0){
+        document.getElementById("countdown").innerHTML = "Expired";
+    }
+},1000);
+
+// -----------------------------
+// 2. Generate Personalized Referral Link
+// -----------------------------
+var visitorCode = "VIP" + Math.floor(Math.random()*100000);
+var referralBaseLink = "https://systeme.io/?sa="; // replace with your real software referral base
+var referralLink = referralBaseLink + visitorCode;
+document.getElementById("referralButton").href = referralLink;
+console.log("Your referral link:", referralLink);
+
+// -----------------------------
+// 3. Dynamic Stats Simulation
+// -----------------------------
+var visitorCount = Math.floor(Math.random()*20 + 1);
+var referralCount = 0;
+var rewardsCount = 0;
+
+function updateStats(){
+    document.getElementById("visitorCount").innerHTML = visitorCount;
+    document.getElementById("referralCount").innerHTML = referralCount;
+    document.getElementById("rewardsCount").innerHTML = "$" + rewardsCount;
+}
+updateStats();
+
+// Randomly simulate visitor count changes
+setInterval(function(){
+    visitorCount = Math.floor(Math.random()*20 + 1);
+    updateStats();
+}, 5000);
+
+// -----------------------------
+// 4. Email Capture Submission (Google Apps Script Backend)
+// -----------------------------
+var backendUrl = "YOUR_WEB_APP_URL_HERE"; // replace with your deployed Google Apps Script URL
+function submitEmail(){
+    var email = document.getElementById("email").value;
+    if(!email){
+        alert("Please enter a valid email.");
+        return;
+    }
+    // Send email and referralCode to backend
+    fetch(backendUrl + "?email=" + encodeURIComponent(email) +
+          "&referralCode=" + encodeURIComponent(visitorCode) +
+          "&reward=10", {method: "POST"})
+    .then(res => res.text())
+    .then(res => {
+        alert("Thank you! You will be notified at " + email);
+        referralCount++;
+        rewardsCount += 10; // $10 reward simulation
+        updateStats();
+        document.getElementById("email").value = "";
+    })
+    .catch(err => alert("Error submitting email"));
+}
+
+// -----------------------------
+// END OF FINAL PRO HTML
+// -----------------------------
+</script>
+</body>
+</html>border:none;
 border-radius:8px;
 width:80%;
 margin:10px;
